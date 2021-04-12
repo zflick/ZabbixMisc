@@ -1,0 +1,6 @@
+UserParameter=glpi.abertos[*],mysql -u zabbix -sN -e "SELECT count(*) FROM $1.glpi_tickets WHERE status < 5 AND is_deleted = 0"
+UserParameter=glpi.pendentes[*],mysql -u zabbix -sN -e "SELECT count(*) FROM $1.glpi_tickets WHERE status = 4 AND is_deleted = 0"
+UserParameter=glpi.novos[*],mysql -u zabbix -sN -e "SELECT count(*) FROM $1.glpi_tickets WHERE status = 1 AND is_deleted = 0"
+UserParameter=glpi.solucionados[*],mysql -u zabbix -sN -e "SELECT count(*) FROM $1.glpi_tickets WHERE status = 5 OR status = 6 AND is_deleted = 0"
+UserParameter=glpi.2dias[*],mysql -u zabbix -sN -e "SELECT count(*) FROM $1.glpi_tickets WHERE status < 5 && DATEDIFF(NOW(), date_mod) > 2 AND is_deleted = 0"
+UserParameter=glpi.deletados[*],mysql -u zabbix -sN -e "SELECT count(*) FROM $1.glpi_tickets WHERE is_deleted = 1"
